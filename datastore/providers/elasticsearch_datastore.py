@@ -1,6 +1,6 @@
 import os
 from typing import Dict, List, Any, Optional
-
+from icecream import ic 
 import elasticsearch
 from elasticsearch import Elasticsearch, helpers
 from loguru import logger
@@ -340,7 +340,10 @@ def connect_to_elasticsearch(
             "No authentication details provided. Please consider using an api_key or username and password to secure your connection."
         )
 
+    connection_params['verify_certs'] =False
     # Establish the Elasticsearch client connection
+    # ic(**connection_params)
+    print(connection_params)
     es_client = Elasticsearch(**connection_params)
     try:
         es_client.info()
